@@ -1,0 +1,162 @@
+{
+  "info": {
+    "name": "EHR Patient API",
+    "description": "Postman collection for the EHR Patient API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Patients",
+      "item": [
+        {
+          "name": "Get All Patients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients"]
+            },
+            "description": "Returns all active patients"
+          }
+        },
+        {
+          "name": "Get Patient by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "1"]
+            },
+            "description": "Returns a single patient by their ID"
+          }
+        },
+        {
+          "name": "Get Patient by Email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/email/john@example.com",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "email", "john@example.com"]
+            },
+            "description": "Returns a patient by their email address"
+          }
+        },
+        {
+          "name": "Get Patient by MRN",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/mrn/MRN-001",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "mrn", "MRN-001"]
+            },
+            "description": "Returns a patient by their Medical Record Number"
+          }
+        },
+        {
+          "name": "Search Patients by Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/search?name=john",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "search"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "john"
+                }
+              ]
+            },
+            "description": "Search patients by first or last name"
+          }
+        },
+        {
+          "name": "Get Telehealth Consented Patients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/telehealth",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "telehealth"]
+            },
+            "description": "Returns all patients who have given telehealth consent"
+          }
+        },
+        {
+          "name": "Create Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"555-123-4567\",\n  \"dateOfBirth\": \"1990-05-15\",\n  \"gender\": \"MALE\",\n  \"addressLine1\": \"123 Main St\",\n  \"addressLine2\": \"Apt 4B\",\n  \"city\": \"Kalispell\",\n  \"state\": \"MT\",\n  \"zipCode\": \"59901\",\n  \"country\": \"USA\",\n  \"medicalRecordNumber\": \"MRN-001\",\n  \"bloodType\": \"O_POSITIVE\",\n  \"allergies\": \"Penicillin, Peanuts\",\n  \"currentMedications\": \"Lisinopril 10mg\",\n  \"medicalHistory\": \"Hypertension diagnosed 2018\",\n  \"notes\": \"Prefers morning appointments\",\n  \"insuranceProvider\": \"Blue Cross Blue Shield\",\n  \"insurancePolicyNumber\": \"BCBS-987654\",\n  \"insuranceGroupNumber\": \"GRP-001\",\n  \"emergencyContactName\": \"Jane Doe\",\n  \"emergencyContactPhone\": \"555-987-6543\",\n  \"emergencyContactRelationship\": \"Spouse\",\n  \"telehealthConsent\": true,\n  \"preferredVideoProvider\": \"Zoom\",\n  \"appointmentPreference\": \"TELEHEALTH\",\n  \"active\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients"]
+            },
+            "description": "Creates a new patient record"
+          }
+        },
+        {
+          "name": "Update Patient",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"555-111-2222\",\n  \"dateOfBirth\": \"1990-05-15\",\n  \"gender\": \"MALE\",\n  \"addressLine1\": \"456 New Street\",\n  \"addressLine2\": \"\",\n  \"city\": \"Kalispell\",\n  \"state\": \"MT\",\n  \"zipCode\": \"59901\",\n  \"country\": \"USA\",\n  \"medicalRecordNumber\": \"MRN-001\",\n  \"bloodType\": \"O_POSITIVE\",\n  \"allergies\": \"Penicillin\",\n  \"currentMedications\": \"Lisinopril 10mg, Metformin 500mg\",\n  \"medicalHistory\": \"Hypertension diagnosed 2018, Type 2 Diabetes 2022\",\n  \"notes\": \"Updated notes\",\n  \"insuranceProvider\": \"Blue Cross Blue Shield\",\n  \"insurancePolicyNumber\": \"BCBS-987654\",\n  \"insuranceGroupNumber\": \"GRP-001\",\n  \"emergencyContactName\": \"Jane Doe\",\n  \"emergencyContactPhone\": \"555-987-6543\",\n  \"emergencyContactRelationship\": \"Spouse\",\n  \"telehealthConsent\": true,\n  \"preferredVideoProvider\": \"Doxy.me\",\n  \"appointmentPreference\": \"NO_PREFERENCE\",\n  \"active\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "1"]
+            },
+            "description": "Updates an existing patient by ID"
+          }
+        },
+        {
+          "name": "Delete Patient (Soft Delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patients", "1"]
+            },
+            "description": "Soft deletes a patient by setting active to false"
+          }
+        }
+      ]
+    }
+  ]
+}
