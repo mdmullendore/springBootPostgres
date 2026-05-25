@@ -1,4 +1,4 @@
-# `springBootPostgres` — API and DB Demo
+# Spring Boot Postgres — API and DB Demo
 
 A RESTful API built with **Spring Boot 3** and **PostgreSQL**.
 
